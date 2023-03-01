@@ -1,7 +1,7 @@
 [ -r ~/.aliases ] && . ~/.aliases
 
-export HISTFILE=$HOME/.mksh_history  # Ubicación historial shell mksh
-export HISTSIZE=8192                 # Tamaño historial shell mksh
+export HISTFILE=$HOME/.mksh_history
+export HISTSIZE=8192                 
 
 PS1=$'$PWD $(git_branch)\n $(get_uid) '
 

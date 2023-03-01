@@ -1,4 +1,4 @@
-!--Configuración de fuentes--
+!--Fonts--
 Xft.dpi: 96
 Xft.autohint: 0 
 Xft.lcdfilter: lcddefault 
@@ -7,11 +7,11 @@ Xft.hinting: 1
 Xft.antialias: 1 
 Xft.rgba: rgb
 
-!--Configuración del cursor--
+!--Cursor--
 Xcursor.theme: Vimix-white-cursors
 Xcursor.size: 16
 
-!--Configuración para NSXIV--
+!--Nsxiv--
 Nsxiv.window.background: #000000
 Nsxiv.window.foreground: #ffffff
 Nsxiv.font: mononoki
