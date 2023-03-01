@@ -1,0 +1,24 @@
+[ -r ~/.aliases ] && . ~/.aliases
+
+export HISTFILE=$HOME/.mksh_history  # Ubicación historial shell mksh
+export HISTSIZE=8192                 # Tamaño historial shell mksh
+
+PS1=$'$PWD $(git_branch)\n $(get_uid) '
+
+get_uid(){
+	if (( USER_ID )) ; then
+	print \$
+	else 
+	print \#
+	fi
+}
+ 	
+git_branch() {
+	BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	if [ ! '${BRANCH}' = '' ]; then
+		print ${BRANCH}
+ 	else
+		print ''
+	fi
+	unset BRANCH
+}

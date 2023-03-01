@@ -1,0 +1,5 @@
+#! /bin/sh
+for i in gcc glibc binutils ; do
+    printf "$i  " 
+    scratch info $i | awk '/Installed/{print $2}'
+done

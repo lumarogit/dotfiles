@@ -1,0 +1,4 @@
+#!/bin/sh
+echo Write de module name, example i915 :
+read NAME
+doas grep -H '' /sys/module/$NAME/parameters/*

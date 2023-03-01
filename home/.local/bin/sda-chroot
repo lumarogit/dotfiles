@@ -1,0 +1,11 @@
+#! /bin/sh
+doas mount /dev/sda3 /mnt/venom && \
+doas mount -v --bind /dev /mnt/venom/dev && \
+doas mount -vt devpts devpts /mnt/venom/dev/pts -o gid=5,mode=620 && \
+doas mount -vt proc proc /mnt/venom/proc && \
+doas mount -vt sysfs sysfs /mnt/venom/sys && \
+doas mount -vt tmpfs tmpfs /mnt/venom/run && \
+doas mkdir -pv /mnt/venom/$(readlink /mnt/venom/dev/shm) && \
+doas cp -L /etc/resolv.conf /mnt/venom/etc/ && \
+doas mount -t tmpfs tmpfs -o nosuid,noatime,nodev,size=16G /mnt/venom/var/cache/scratchpkg/work && \
+doas chroot /mnt/venom /bin/mksh

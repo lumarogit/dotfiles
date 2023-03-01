@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "Write the kernel module name, example i915:"
+read NAME
+
+if [ -d "/sys/module/$NAME/parameters" ]; then 
+  ls /sys/module/$NAME/parameters/ | while read parameter; do 
+	echo -n "$parameter => " 
+	doas cat /sys/module/$NAME/parameters/$parameter
+  done 
+fi

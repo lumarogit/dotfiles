@@ -1,0 +1,25 @@
+# Alias
+[ -r ~/.aliases ] && . ~/.aliases
+
+# Historial 
+export HISTFILE=$HOME/.mksh_history  # Ubicación historial shell mksh
+export HISTSIZE=4096                 # Tamaño historial shell mksh
+
+# Prompt
+PS1=$'$PWD $(git_branch)\n (chroot) '
+
+# Directorio de trabajo actual
+get_dir() {
+	pwd | sed "s|^$HOME|~|"
+}
+
+# Rama repo git
+git_branch() {
+	BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	if [ ! "${BRANCH}" = "" ]; then
+		printf ${BRANCH}
+ 	else
+		printf ""
+	fi
+	unset BRANCH
+}

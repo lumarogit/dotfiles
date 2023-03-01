@@ -1,0 +1,10 @@
+# Brillo del monitor
+light -S 25 &
+# Fondo de escritorio
+display -window root ~/.icons/fondo.png &
+# Barra de estado
+slstatus &
+# Rxvt-unicode
+urxvtd -q -f -o
+# Pipewire launcher
+venom-pipewire-launcher &

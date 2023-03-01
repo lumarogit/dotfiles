@@ -1,0 +1,55 @@
+#!/bin/sh
+
+mem=$(busybox free -m | awk '/^Mem:/ {print $3"m/"$2"m"}')
+kernel=$(uname -r)
+kernelsize=$(du -sh /boot/vmlinuz-venom | awk '{print $1}')
+. /etc/os-release
+os=${PRETTY_NAME}
+hn=$(cat /etc/hostname)
+shell=$(basename $SHELL)
+mksh=$(scratch info mksh-git | awk '/Installed/{print $2}')
+#init=$(eval /sbin/init --version 1>/dev/null && echo SysVinit)
+init=$(scratch info sysvinit | awk '/Installed/{print $2}')
+cpu=$(awk -F ": " 'NR==5 {print $2}' /proc/cpuinfo)
+gpu=$(awk -F'"' '/Chipset:/{print $1}' /var/log/Xorg.0.log | cut -c 58-82)
+tr=$(scratch info rxvt-unicode | awk '/Installed/{print $2}')
+font="$(awk -F'=' '/font/{print $2}' "${HOME}/.config/gtk-3.0/settings.ini")"
+wm=$(scratch info dwm-git | awk '/Installed/{print $2}')
+spkg=$(ls $(pkgadd --print-dbdir) | wc -l) 
+glibc=$(scratch info glibc | awk '/Installed/{print $2}')
+gcc=$(scratch info gcc | awk '/Installed/{print $2}')
+binut=$(scratch info binutils | awk '/Installed/{print $2}')
+pyth=$(scratch info python3 | awk '/Installed/{print $2}')
+llvm=$(scratch info llvm | awk '/Installed/{print $2}')
+x11=$(scratch info xorg-server | awk '/Installed/{print $2}')
+snd=$(scratch info alsa-lib | awk '/Installed/{print $2}')
+xz=$(scratch info xz | awk '/Installed/{print $2}')
+#runit=$(scratch info runit | awk '/Installed/{print $2}')
+
+full() {
+cat << EOF
+
+	> ${os}
+	> sysvinit-${init%-*}
+	> linux-${kernel} (${kernelsize})
+	> glibc-${glibc%-*}
+	> gcc-${gcc%-*}
+	> binutils-${binut%-*}
+	> llvm-${llvm%-*}
+	> xz-${xz%-*}
+	> python-${pyth%-*}
+	> spkg: ${spkg}
+	> ${font}
+	> mksh-git-${mksh}
+	> rxvt-unicode-${tr%-*}
+	> xorg-server-${x11%-*}
+	> dwm-git-${wm}
+	> alsa-${snd%-*}
+	> ${cpu}	
+	> ${gpu}
+	> ${mem}
+
+EOF
+}
+
+full

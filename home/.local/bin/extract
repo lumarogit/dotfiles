@@ -1,0 +1,49 @@
+#!/bin/sh
+
+if [ -f "$1" ]; then
+	case $1 in
+	   *.tar)
+		bsdtar -xvf  "$1"
+	    ;;
+	   *.tar.bz2|*.tbz)
+		bsdtar -xvjf "$1"
+	    ;;
+	   *.tar.gz|*.tgz)
+		bsdtar -xvzf "$1"
+
+	    ;;
+	   *.tar.xz|*.txz)
+		bsdtar -xvjf "$1"
+
+	    ;;
+	   *.tar.zst|*.zst)
+		bsdtar -xvzf "$1"
+
+	    ;;
+	   *.rar)
+		bsdtar -xf "$1"
+
+	    ;;
+	   *.zip)
+		bsdtar -xf "$1"
+
+				    ;;	
+	   *.7z)
+		bsdtar -xf "$1"
+
+	    ;;
+	   *)
+		print "'$1': unknown format"
+		print "It couldn't extract the file"
+		print "Usage:\n"
+		print "extract file.<format>\n"
+		return
+	    ;;
+	esac
+ else
+	print "'$1': unknown format"
+	print "Usage:\n"
+	print "extract file.<format>\n"
+	return
+ fi
+

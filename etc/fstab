@@ -1,0 +1,6 @@
+# <fs>		                              <mountpoint>     <type> <opts>		        <dump/pass>
+PARTUUID=1bd21d8e-6c2e-2148-8a88-4fac33e93d73 /boot 		vfat  defaults,noatime              0 2
+PARTUUID=956631a7-21c7-2646-aceb-80b65206fddf /      		xfs   defaults,noatime              0 0
+PARTUUID=f1e8ba79-a410-fd44-83ed-8791a275d9d1 none   		swap  defaults                      0 0
+tmpfs                                         /tmp   		tmpfs nosuid,noatime,nodev,size=3G  0 0
+tmpfs                                /var/cache/scratchpkg/work tmpfs nosuid,noatime,nodev,size=16G 0 0

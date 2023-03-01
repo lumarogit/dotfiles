@@ -1,0 +1,10 @@
+#! /bin/sh
+mount -v --bind /dev /mnt/venom/dev && \
+mount -vt devpts devpts /mnt/venom/dev/pts -o gid=5,mode=620 && \
+mount -vt proc proc /mnt/venom/proc && \
+mount -vt sysfs sysfs /mnt/venom/sys && \
+mount -vt tmpfs tmpfs /mnt/venom/run && \
+mkdir -pv /mnt/venom/$(readlink /mnt/venom/dev/shm) && \
+cp -L /etc/resolv.conf /mnt/venom/etc/ && \
+mount -t tmpfs tmpfs -o nosuid,noatime,nodev,size=16G /mnt/venom/var/cache/scratchpkg/work && \
+chroot /mnt/venom /bin/mksh

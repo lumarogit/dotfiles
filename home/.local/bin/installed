@@ -1,0 +1,17 @@
+#! /bin/sh
+
+prts="$(scratch installed | awk '{print $1}')"
+
+installed() {
+	for i in $prts 
+	do
+		scratch install -fr $i
+	done
+}
+
+printf "You are gonna recompile and reinstall all installed ports like $prts \n... \nAre you sure?  [y/N]"
+	read op
+	case "$op" in
+		[y|y) installed ;;
+		N]|n) exit ;;
+       esac

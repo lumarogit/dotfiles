@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/luis/Git/local/mesa'
+let g:netrw_dirhist_2='/usr/ports/main/ffmpeg'
+let g:netrw_dirhist_1='/home/luis/Git'
+let g:netrw_dirhist_0='/home/luis/Git/dotfiles'
+let g:netrw_dirhist_9='/usr/ports/main/firefox'
+let g:netrw_dirhist_8='/usr/ports/local/mesa'
+let g:netrw_dirhist_7='/usr/ports/local'
+let g:netrw_dirhist_6='/usr/ports/local/mesa'
+let g:netrw_dirhist_5='/home/luis/Git/ports/archived'
+let g:netrw_dirhist_4='/home/luis/Git/dotfiles/venom/local/telegram-desktop-bin'

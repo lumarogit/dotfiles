@@ -1,0 +1,17 @@
+#! /bin/sh
+
+prts="linux-api-headers glibc binutils gcc glibc binutils gcc libtool libmpc elfutils libmpfr linux"
+
+toolchain() {
+	for i in $prts 
+	do
+		scratch install -fr $i
+	done
+}
+
+printf "You are gonna recompile and reinstall critical ports like $prts ...\n Are you sure?  [y/n]"
+	read op
+	case "$op" in
+		[y|y) toolchain ;;
+		n]|n) exit ;;
+       esac

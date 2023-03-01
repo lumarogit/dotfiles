@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# Micrófono Webcam [-i sysdefault:CARD=Camera], micrófono por defecto [-i default]
+
+screencast() { ffmpeg \
+	-f x11grab \
+	-r 25 \
+	-s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
+	-i $DISPLAY \
+	-f alsa -i default \
+	-c:v libx264 -preset ultrafast \
+	-c:a libvorbis \
+	"$HOME/screencast-$(date '+%y%m%d-%H%M%S').mp4" &
+	echo $! > /tmp/recordingpid
+	herbe "[·] Screencast.mp4 "
+       	}
+
+video() { ffmpeg \
+	-f x11grab \
+	-r 25 \
+	-s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
+ 	-i $DISPLAY \
+	-c:v libx264 -preset ultrafast \
+	"$HOME/video-$(date '+%y%m%d-%H%M%S').mp4" &
+	echo $! > /tmp/recordingpid
+	herbe "[·] Video.mp4"
+	}
+
+webcam() { ffmpeg \
+	-f v4l2 \
+	-r 25 \
+	-s 640x480 \
+	-i /dev/video0 \
+	-f alsa -i default \
+        -c:v libx264 -preset ultrafast \
+        -c:a libvorbis \
+	"$HOME/webcam-$(date '+%y%m%d-%H%M%S').mp4" &
+	echo $! > /tmp/recordingpid
+	herbe "[·] Webcam"
+	}
+
+audio() { ffmpeg \
+	-f alsa -i default \
+	-c:a libvorbis \
+	"$HOME/audio-$(date '+%y%m%d-%H%M%S').ogg" &
+	echo $! > /tmp/recordingpid
+	herbe "[·] Audio.ogg"
+	}
+
+askrecording() { \
+	choice=$(printf " Screencast\\n Vídeo\\n Audio\\n Webcam" | dmenu -i -fn "mononoki:size=9:style=Bold" -nb "#000000" -nf "#777777" -sb "#000000" -sf "#ffffff" -p "   Grabar")
+	case "$choice" in
+            " Screencast") screencast;;
+	    " Vídeo") video;;
+            " Audio") audio;;
+	    " Webcam") webcam;;
+	esac
+	}
+
+killrecording() {
+	recpid="$(cat /tmp/recordingpid)"
+        # kill with SIGTERM, allowing finishing touches.
+	kill -15 "$recpid"
+	rm -f /tmp/recordingpid
+	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+	sleep 3
+	kill -9 "$recpid"
+	exit
+	}
+
+asktoend() { \
+	response=$(printf " Cancelar\\n Aceptar" | dmenu -i -fn "mononoki:size=9:style=Bold" -nb "#000000" -nf "#777777" -sb "#000000" -sf "#ffffff" -p "   Finalizar") &&
+	[ "$response" = " Aceptar" ] &&  killrecording
+	}
+
+case "$1" in
+         kill) killrecording;;
+         *) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
+esac

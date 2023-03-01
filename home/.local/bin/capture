@@ -1,0 +1,42 @@
+#!/bin/sh
+# v2.0
+# Depends: herbe, imagemagick, xclip
+
+ayuda() {
+
+cat << EOF
+
+Usage:
+
+capture [-APVh]
+
+Options:
+	-A:	Save selected area to clipboard
+	-S:	Save screen to clipboard
+	-W:	Save active window to clipboard
+	-h:	Show this help
+
+EOF
+
+}
+
+case $1 in
+	-A)
+		import png:- | xclip -selection clipboard -t image/png
+		herbe 'Selected area to clipboard'
+		;;
+	-S)
+		import -window root png:- | xclip -selection clipboard -t image/png
+		herbe 'Screen to clipboard'
+		;;
+	-W)
+		import -window $(xdotool getwindowfocus) png:- | xclip -selection clipboard -t image/png
+		herbe 'Active window to clipboard'
+		;;
+	-h)
+		ayuda
+		;;
+	*)
+		printf "Invalid option!\n"
+	return
+esac
