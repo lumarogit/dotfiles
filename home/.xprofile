@@ -1,4 +1,6 @@
-light -S 25 &
+# wallpaper
 display -window root ~/.icons/fondo.png &
+# status bar
 slstatus &
-urxvtd -q -f -o
+# urxvt daemon
+urxvtd --quiet --opendisplay --fork

@@ -1,5 +1,5 @@
 !--Fonts--
-Xft.dpi: 96
+Xft.dpi: 192
 Xft.autohint: 0 
 Xft.lcdfilter: lcddefault 
 Xft.hintstyle: hintfull
@@ -9,9 +9,45 @@ Xft.rgba: rgb
 
 !--Cursor--
 Xcursor.theme: Vimix-white-cursors
-Xcursor.size: 16
+Xcursor.size: 48
 
 !--Nsxiv--
 Nsxiv.window.background: #000000
 Nsxiv.window.foreground: #ffffff
 Nsxiv.font: mononoki
+
+!--URxvt--
+URxvt*termName: rxvt-unicode-256color
+*.foreground: #ffffff
+*.background: #000000
+*.cursorColor: #ffffff
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.font: xft:mononoki:style=Regular:size=10
+URxvt.boldFont: xft:mononoki:style=Bold:size=10
+URxvt.italicFont: xft:mononoki:style=Italic:size=10
+URxvt.boldItalicFont: xft:mononoki:style=Bold Italic:size=10
+! fix half screen spacing in prompt on launch
+URxvt.geometry: 189x55
+URxvt.letterSpace: 0
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.scrollBar_floating: false
+URxvt.scrollstyle: rxvt
+!!--Extensions--
+URxvt.perl-ext-common: default,selection-to-clipboard,matcher,keyboard-select,font-size
+URxvt.keysym.M-u:      perl:url-select:select_next
+URxvt.url-launcher:    /usr/bin/firefox
+URxvt.underlineURLs:   True
+URxvt.matcher.button:  1
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.clipboard.autocopy: true
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show

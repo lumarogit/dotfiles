@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/luis/.gtkrc-2.0.mine"
-gtk-theme-name="Fluent-grey-Dark-compact"
-gtk-icon-theme-name="Royal-Z"
+gtk-theme-name="Fluent-grey-dark-compact"
+gtk-icon-theme-name="Adwaita"
 gtk-font-name="mononoki 9"
 gtk-cursor-theme-name="Vimix-white-cursors"
 gtk-cursor-theme-size=0
@@ -15,5 +15,5 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintmedium"
+gtk-xft-hintstyle="hintfull"
 gtk-xft-rgba="rgb"

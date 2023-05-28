@@ -10,21 +10,21 @@ esac
 set -o allexport
 
 # General env vars
-XAUTHORITY="$HOME/.Xauthority"
-PATH="$HOME/.local/bin:/sbin:/usr/sbin:$PATH"
+XAUTHORITY="$HOME"/.Xauthority           
+PATH="/home/luis/.local/bin:/sbin:/usr/sbin:$PATH" 
 LANG="es_ES.UTF-8"
 PAGER="less"                             
-EDITOR="vim"
+EDITOR="vim"                             
 TERM="rxvt-unicode-256color"             
-VISUAL="$EDITOR"
+VISUAL="$EDITOR"                         
 BROWSER="firefox"                        
-READER="zathura"
-IMAGEVIEWER="nsxiv"
-FILE="nnn"
-#XZ_DEFAULTS="-T0"
-#APULSE_CAPTURE_DEVICE="plughw:0,0"
+READER="zathura"                         
+IMAGEVIEWER="nsxiv"                      
+FILE="nnn"      
+QT_ENABLE_HIGHDPI_SCALING=1
+#APULSE_CAPTURE_DEVICE="plughw:0,0"      
 #APULSE_PLAYBACK_DEVICE="plughw:0,0"     
-#ENV="$HOME/.kshrc"
+#ENV=$HOME/.kshrc
 
 # NNN env vars
 NNN_OPENER="xdg-open"
@@ -39,12 +39,12 @@ NNN_READER="zathura"                     # Documents reader
 NNN_FIFO=/tmp/nnn.fifo                   # Preview pluggin
 NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
 
-# DBUS session active
+# D-Bus session active
 #[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && eval $(dbus-launch --sh-syntax --exit-with-session)
 
 # XDG_RUNTIME_DIR 
-#unset XDG_RUNTIME_DIR
-#XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
+unset XDG_RUNTIME_DIR
+XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
 
 # Autologin en TTY1
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then

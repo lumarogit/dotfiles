@@ -6,6 +6,5 @@
 #
 # example:
 #    openssl libressl
-#
 rust rust-bin
-libtheora
+ninja samurai

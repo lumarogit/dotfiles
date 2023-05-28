@@ -9,4 +9,6 @@ alias etrash='doas rm -r ~/.local/share/Trash/files/{*,.*} ; doas rm -r ~/.local
 
 # Venom
 alias veup='doas scratch sync && doas scratch sysup && doas scratch purge && doas scratch cache && doas scratch missingdep && doas scratch integrity && doas revdep -r'
+alias vero='doas scratch remove $(scratch orphan)'
 alias vepi="ls $(pkgadd --print-dbdir) | wc -l"
+alias vchroot="doas umount /mnt/venom/* ; doas venom-chroot"
