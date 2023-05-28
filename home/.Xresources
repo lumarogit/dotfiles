@@ -1,5 +1,5 @@
 !--Fonts--
-Xft.dpi: 192
+Xft.dpi: 96
 Xft.autohint: 0 
 Xft.lcdfilter: lcddefault 
 Xft.hintstyle: hintfull
@@ -9,7 +9,7 @@ Xft.rgba: rgb
 
 !--Cursor--
 Xcursor.theme: Vimix-white-cursors
-Xcursor.size: 48
+Xcursor.size: 16
 
 !--Nsxiv--
 Nsxiv.window.background: #000000
