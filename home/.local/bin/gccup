@@ -1,0 +1,17 @@
+#! /bin/sh
+
+prts="gcc linux-api-headers glibc binutils gcc libtool libmpc elfutils libmpfr linux-libre"
+
+gccup() {
+	for i in $prts 
+	do
+		scratch install -fr $i
+	done
+}
+
+printf "You are gonna recompile and reinstall critical ports like $prts ...\n Are you sure?  [y/n]"
+	read op
+	case "$op" in
+		[y|y) gccup ;;
+		n]|n) exit ;;
+       esac
