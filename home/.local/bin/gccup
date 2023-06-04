@@ -1,6 +1,6 @@
 #! /bin/sh
 
-prts="gcc linux-api-headers glibc binutils gcc libtool libmpc elfutils libmpfr linux-libre"
+prts="gcc linux-api-headers glibc binutils gcc libtool libmpc elfutils libmpfr linux"
 
 gccup() {
 	for i in $prts 
