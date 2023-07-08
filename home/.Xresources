@@ -10,26 +10,25 @@ Xft.rgba: rgb
 !--Cursor--
 Xcursor.theme: Vimix-white-cursors
 Xcursor.size: 16
+*.cursorColor: #ffffff
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
 
 !--Nsxiv--
 Nsxiv.window.background: #000000
 Nsxiv.window.foreground: #ffffff
 Nsxiv.font: mononoki
 
-!--URxvt--
+!--Urxvt--
 URxvt*termName: rxvt-unicode-256color
 *.foreground: #ffffff
 *.background: #000000
-*.cursorColor: #ffffff
-URxvt.cursorBlink: true
-URxvt.cursorUnderline: true
 URxvt.font: xft:mononoki:style=Regular:size=10
 URxvt.boldFont: xft:mononoki:style=Bold:size=10
 URxvt.italicFont: xft:mononoki:style=Italic:size=10
 URxvt.boldItalicFont: xft:mononoki:style=Bold Italic:size=10
-! fix half screen spacing in prompt on launch
-URxvt.geometry: 189x55
 URxvt.letterSpace: 0
+!URxvt.geometry: 188x44
 URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
@@ -40,7 +39,7 @@ URxvt.perl-ext-common: default,selection-to-clipboard,matcher,keyboard-select,fo
 URxvt.keysym.M-u:      perl:url-select:select_next
 URxvt.url-launcher:    /usr/bin/firefox
 URxvt.underlineURLs:   True
-URxvt.matcher.button:  1
+URxvt.matcher.button:  1 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

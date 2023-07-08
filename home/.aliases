@@ -6,9 +6,8 @@ alias mv='mv -iv'
 alias rm='rm -Iv' 
 alias mkdir='mkdir -pv' 
 alias etrash='doas rm -r ~/.local/share/Trash/files/{*,.*} ; doas rm -r ~/.local/share/Trash/info/{*,.*}'
-
+alias pocom5="doas ip a del 192.168.1.3/24 dev wlp8s0 && doas dhcpcd wlp8s0"
 # Venom
 alias veup='doas scratch sync && doas scratch sysup && doas scratch purge && doas scratch cache && doas scratch missingdep && doas scratch integrity && doas revdep -r'
-alias vero='doas scratch remove $(scratch orphan)'
 alias vepi="ls $(pkgadd --print-dbdir) | wc -l"
-alias vchroot="doas umount /mnt/venom/* ; doas venom-chroot"
+alias vga1='xrandr --output VGA1 --mode 1920x1080'

@@ -2,7 +2,7 @@
 
 syntax on                  " Resaltar sintaxis
 filetype plugin indent on  " Carga los plugins correctamente
-colorscheme monochrome     " Esquema de color
+colorscheme wildcharm      " Esquema de color
 set number                 " Números de línea
 set history=100            " Guardar historial de comandos
 set undolevels=500         " Niveles para deshacer cambios
