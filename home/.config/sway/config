@@ -45,9 +45,9 @@ set $term footclient
 # on the original workspace that the command was run on.
 set $menufont mononoki 9
 set $col1 #000000
-set $col2 #353535
+set $col2 #111111
 set $col3 #777777
-set $col4 #dddddd
+set $col4 #ffffff
 set $col5 #535353
 
 set $menu bemenu-run -H "20" -p "Run:" --fn "$menufont" --tb "$col1" --tf "$col3" --fb "$col1" --ff "$col3" --nb "$col1" --nf "$col3" --hb "$col1" --hf "$col4" --sb "$col1" --sf "$col4"
@@ -126,7 +126,7 @@ set $menu bemenu-run -H "20" -p "Run:" --fn "$menufont" --tb "$col1" --tf "$col3
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Sesion' -b 'Exit' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Session' -b 'Exit' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -299,6 +299,7 @@ set $mode_system System: [e]xit | [l]ock | [r]eboot | [s]hutdown
 	bindsym $mod+z exec $term nnn
 
 # Screen brigthness
+	exec_always light -S 31
 	bindsym XF86MonBrightnessDown exec light -U 5
 	bindsym XF86MonBrightnessUp exec light -A 5
 
