@@ -38,8 +38,10 @@ set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term footclient
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -50,8 +52,7 @@ set $col3 #777777
 set $col4 #ffffff
 set $col5 #535353
 
-set $menu bemenu-run -H "20" -p "Run:" --fn "$menufont" --tb "$col1" --tf "$col3" --fb "$col1" --ff "$col3" --nb "$col1" --nf "$col3" --hb "$col1" --hf "$col4" --sb "$col1" --sf "$col4"
-
+set $menu bemenu-run -H "20" -p "Run:" --fn "$menufont" --tb "$col1" --tf "$col3" --hb "$col1" --hf "$col4" --nf "$col5" --af "$col5"
 
 ### Output configuration
 #
@@ -300,8 +301,8 @@ set $mode_system System: [e]xit | [l]ock | [r]eboot | [s]hutdown
 
 # Screen brigthness
 	exec_always light -S 31
-	bindsym XF86MonBrightnessDown exec light -U 5
-	bindsym XF86MonBrightnessUp exec light -A 5
+	bindsym XF86MonBrightnessDown exec light -U 3
+	bindsym XF86MonBrightnessUp exec light -A 3
 
 # Play
 	bindsym XF86AudioPlay exec playerctl play-pause
@@ -314,5 +315,3 @@ set $mode_system System: [e]xit | [l]ock | [r]eboot | [s]hutdown
 
 # Foot server
 	exec_always foot -s
-
-include /etc/sway/config.d/*
