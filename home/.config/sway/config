@@ -246,27 +246,27 @@ mode "resize" {
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-#bar {
-#	position top
+bar {
+	position top
 
 	# When the status_command prints a new line to stdout, swaybar updates.
 	# The default just shows the current date and time.
 	#status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-#	status_command while date +'%a, %d %b %H:%M '; do sleep 1; done
+	status_command while date +'%a, %d %b %H:%M '; do sleep 1; done
     
-#	colors {
-#	        font mononoki 9
-#		statusline #dddddd
-#	        background #000000
-#	        separator  #000000
-#	        #Indicadores             Border  Backgr  Text
-#	        focused_workspace       #000000 #e1e1e1 #000000
-#	        active_workspace        #000000 #e1e1e1 #000000
-#	        inactive_workspace      #000000 #000000 #dddddd
-#	        urgent_workspace        #ff7200 #ff7200 #dddddd
-#	        binding_mode            #000000 #000000 #dddddd
-#	} 
-#}
+	colors {
+	        font mononoki 9
+		statusline #dddddd
+	        background #000000
+	        separator  #000000
+	        #Indicadores             Border  Backgr  Text
+	        focused_workspace       #000000 #e1e1e1 #000000
+	        active_workspace        #000000 #e1e1e1 #000000
+	        inactive_workspace      #000000 #000000 #dddddd
+	        urgent_workspace        #ff7200 #ff7200 #dddddd
+	        binding_mode            #000000 #000000 #dddddd
+	} 
+}
 
 set $mode_system System: [e]xit | [l]ock | [r]eboot | [s]hutdown 
         mode "$mode_system" {
