@@ -17,13 +17,12 @@ default_border pixel 1
 default_floating_border pixel 1
 hide_edge_borders smart
 
-#   class                    border    backg     text     indicator  child_border
-    client.focused           #4c7899   #285577   #dddddd   #2e9ef4   #777777
-    client.focused_inactive  #333333   #5f676a   #dddddd   #484e50   #5f676a
-    client.unfocused         #333333   #222222   #888888   #292d2e   #333333
-    client.urgent            #2f343a   #900000   #dddddd   #900000   #900000
-    client.placeholder       #000000   #0c0c0c   #dddddd   #000000   #0c0c0c
-
+#   class                    border   backg    text     indicator  child_border
+    client.focused           #4c7899  #285577  #dddddd  #2e9ef4    #777777
+    client.focused_inactive  #333333  #5f676a  #dddddd  #484e50    #5f676a
+#    client.unfocused        #333333  #222222  #888888  #292d2e    #333333
+#    client.urgent           #2f343a  #900000  #dddddd  #900000    #900000
+#    client.placeholder      #000000  #0c0c0c  #dddddd  #000000    #0c0c0c
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
@@ -46,19 +45,13 @@ set $term footclient
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menufont mononoki 9
-set $col1 #000000
-set $col2 #111111
-set $col3 #777777
-set $col4 #ffffff
-set $col5 #535353
-
-set $menu bemenu-run -H "20" -p "Run:" --fn "$menufont" --tb "$col1" --tf "$col3" --hb "$col1" --hf "$col4" --nf "$col5" --af "$col5"
+set $menu bemenu-run -H "20" -p "Run:" --fn "$menufont"
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-	#exec_always wbg /home/luis/.icons/fondo.jpg
-	exec_always swaybg -i /home/luis/.icons/fondo.png
+	exec_always wbg /home/luis/.icons/fondo.jpg
+	#exec_always swaybg -i /home/luis/.icons/fondo.png
 	#output * bg #000000 solid_color
 
 #
@@ -253,19 +246,20 @@ bar {
 	# The default just shows the current date and time.
 	#status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 	#status_command while date +'%a, %d %b %H:%M '; do sleep 1; done
-    	status_command i3status
+   	status_command i3status
 	
+	font pango:mononoki 9
+
 	colors {
-	        font mononoki 9
-		statusline #dddddd
+#		statusline #dddddd
 	        background #000000
 	        separator  #000000
 	        #Indicadores             Border  Backgr  Text
-	        focused_workspace       #000000 #666666 #dddddd
-	        active_workspace        #000000 #666666 #dddddd
-	        inactive_workspace      #000000 #000000 #dddddd
-	        urgent_workspace        #000000 #222222 #dddddd
-	        binding_mode            #000000 #000000 #dddddd
+	        focused_workspace       #666666 #000000 #dddddd
+	        active_workspace        #666666 #000000 #dddddd
+#	        inactive_workspace      #000000 #000000 #dddddd
+#	        urgent_workspace        #000000 #999999 #000000
+#	        binding_mode            #000000 #000000 #dddddd
 	} 
 }
 
