@@ -1,0 +1,113 @@
+# Typical laptop setup, with wifi, brightness, battery etc, for
+# i3/Sway.
+
+# For X11/i3, you'll want to replace calls to swaymsg with i3-msg, and
+# the sway-xkb module with the xkb module.
+
+# fonts we'll be re-using here and there
+awesome: &awesome Font Awesome 6 Free Solid:style=Solid:pixelsize=12
+awesome_brands: &awesome_brands Font Awesome 6 Brands Regular:style=Regular:pixelsize=12
+
+std_underline: &std_underline {underline: { size: 1, color: ddddddff}}
+
+# This is THE bar configuration
+bar:
+  height: 20
+  location: top
+  spacing: 3
+  margin: 5
+
+  # Default font
+  font: mononoki:pixelsize=12
+
+  foreground: ffffffff
+  background: 000000cc
+
+  left:
+    - i3:
+       sort: ascending
+       anchors: # Not used (directly) by f00bar; used here to avoid duplication
+          - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
+          - string: &default {<<: *i3_common, text: "{name}"}
+          - focused: &focused
+              deco: {stack: [background: {color: 3333334c}, <<: *std_underline]}
+          - invisible: &invisible {foreground: ffffff55}
+          - urgent: &urgent
+              foreground: 000000ff
+              deco: {stack: [background: {color: bc2b3fff}, <<: *std_underline]}
+          - map: &i3_mode
+              default:
+                - string:
+                    margin: 5
+                    text: "{mode}"
+                    deco: {background: {color: cc421dff}}
+                - empty: {right-margin: 7}
+              conditions:
+                mode == default: {empty: {}}
+       content:
+          "":
+            map:
+              conditions:
+                state == focused:   {string: {<<: [*default, *focused]}}
+                state == unfocused: {string: {<<: *default}}
+                state == invisible: {string: {<<: [*default, *invisible]}}
+                state == urgent:    {string: {<<: [*default, *urgent]}}
+       
+    - foreign-toplevel:
+        content:
+          map:
+            conditions:
+              ~activated: {empty: {}}
+              activated:
+                - string: {text: "{app-id}", foreground: 666666ff}
+                - string: {text: ": {title}"}
+
+  center:
+    - clock:
+        time-format: "%a, %d %b %H:%M"
+        content:
+          - string: {text: "{time}"}
+
+
+  right:
+    - network:
+        name: wlp8s0
+        poll-interval: 1000
+        content:
+          map:
+            default: {string: {text: , font: *awesome, foreground: ffffff66}}
+            conditions:
+              state == down: {string: {text: , font: *awesome, foreground: ff0000ff}}
+              state == up:
+                map:
+                  default:
+                    - string: {text: , font: *awesome}
+
+                  conditions:
+                    ipv4 == "":
+                      - string: {text: , font: *awesome, foreground: ffffff66}
+    - alsa:
+        card: hw:PCH
+        mixer: Master
+        content:
+          map:
+            conditions:
+              ~online: {string: {text: , font: *awesome, foreground: ff0000ff}}
+              online:
+                map:
+                  on-click: /bin/sh -c "amixer -q sset Speaker unmute && amixer -q sset Headphone unmute && amixer -q sset Master toggle"
+                  conditions:
+                    muted: {string: {text: , font: *awesome, foreground: ffffff66}}
+                    ~muted:
+                      ramp:
+                        tag: percent
+                        items:
+                          - string: {text: , font: *awesome}
+                          - string: {text: , font: *awesome}
+                          - string: {text: , font: *awesome}
+    - label:
+        content:
+          string:
+            on-click: doas poweroff
+            text: 
+            font: *awesome
