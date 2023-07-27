@@ -1,0 +1,11 @@
+#!/bin/sh 
+
+SESSION=$(printf "Shutdown\\nReboot\\nLock\\nExit" | bemenu -H '20' -p 'Session:' --fn '$menufont' --tf '#ffffff' --hf '#000000' --hb '#999999') 
+
+case $SESSION in 
+	"Shutdown") doas shutdown -h now;; 
+	"Reboot") doas shutdown -r now;;
+	"Lock") slock;;
+	"Exit") xdotool key "super+shift+e";; 
+	*) ;; 
+esac
