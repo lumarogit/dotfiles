@@ -24,7 +24,7 @@ bar:
           - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
           - string: &default {<<: *i3_common, text: "{name}"}
           - focused: &focused
-              deco: {stack: [background: {color: 6666664c}, <<: *std_underline]}
+              deco: {stack: [background: {color: 00000000}, <<: *std_underline]}
           - invisible: &invisible {foreground: ffffff55}
           - urgent: &urgent
               foreground: 000000ff
@@ -53,7 +53,6 @@ bar:
             conditions:
               ~activated: {empty: {}}
               activated:
-                - string: {text: "{app-id}: ", foreground: 999999ff}
                 - string: {text: "{title}"}
 
   center:
