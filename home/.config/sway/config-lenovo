@@ -241,53 +241,14 @@ mode "resize" {
 
 	bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#	position top
-
-	# When the status_command prints a new line to stdout, swaybar updates.
-	# The default just shows the current date and time.
-	#status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-	#status_command while date +'%a, %d %b %H:%M '; do sleep 1; done
- #  	status_command i3status
-	
-#	font pango:mononoki 9
-
-#	colors {
-#		statusline #dddddd
-#	        background #000000
-#	        separator  #000000
-	        # Tags                  Border  Backgr  Text
-#	        focused_workspace       #666666 #000000 #dddddd
-#	        active_workspace        #666666 #000000 #dddddd
-#	        inactive_workspace      #000000 #000000 #dddddd
-#	        urgent_workspace        #000000 #999999 #000000
-#	        binding_mode            #000000 #000000 #dddddd
-#	} 
-#}
-
-#set $mode_system System: [e]xit | [l]ock | [r]eboot | [s]hutdown 
-#        mode "$mode_system" {
-#        bindsym e exec swaymsg exit, mode "default"
-#        bindsym l exec swaylock -f -c 000000, mode "default"       
-#        bindsym r exec doas reboot, mode "default"
-#        bindsym s exec doas poweroff, mode "default"
-	# back to normal: Enter or Escape
-#        bindsym Escape mode "default"
-#        }
-
-#        bindsym $mod+x mode "$mode_system"
-
 # Session
 	bindsym $mod+x exec session-wl
 
 # Screen capture
-	bindsym Print exec grim - | wl-copy
-	bindsym Control+Print exec grim -g "$(slurp)" - | wl-copy
-	bindsym Alt+Print exec wf-recorder
+	bindsym Alt+Print exec grimshot copy active
+	bindsym Control+Print exec grimshot copy area
+	bindsym Shift+Print exec grimshot copy window
+	bindsym Print exec grimshot copy screen
 
 # Audio
 	bindsym XF86AudioRaiseVolume exec amixer -q sset Master 3%+
