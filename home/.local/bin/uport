@@ -1,0 +1,83 @@
+#! /bin/sh
+
+# Vars
+pkgdir="/var/cache/scratchpkg/packages"
+
+brch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+port=${PWD##*/}
+path=${PWD%/*}
+repo=${path##*/}
+aver=$(awk -F '=' '/version=/{print $2}' spkgbuild)
+arel=$(awk -F '=' '/release=/{print $2}' spkgbuild)
+
+# check $1
+if [ "$1" = "" ]; then
+	uver="$aver"
+else	
+	uver="$1"
+fi
+
+# check $2
+if [ "$2" = "" ]; then
+	urel=1
+else
+	urel="$2"
+fi
+
+# Funtions
+
+## Git push
+psh () {
+	if [ "$aver" = "$uver" ] && [ "$arel" != "$urel" ]; then
+		comm="$port : rebuild new release"
+	else
+		if [ "$repo" = "testing" ]; then
+			comm="($repo) $port : upgrade to $uver"
+		 else
+			comm="$port : upgrade to $uver"
+		fi
+	fi
+	git add .
+	git commit -m "$comm"
+	git push origin $port
+	git checkout $brch
+}
+
+## Remove files
+rmf () {
+	for files in ".checksums" ".pkgfiles"; do
+		[ -f "$files" ] && rm $files
+	done
+
+}
+
+## Rebuild port or Build and push upgraded port
+bld () {
+	if [ "$aver" = "$uver" ] && [ "$arel" = "$urel" ]; then
+		echo "==> Rebuild port ..."
+		rmf
+		pkgbuild -f
+	else
+		echo "==> Building upgraded port ..."
+		sed -i "s/version=${aver}/version=${uver}/g" spkgbuild
+		sed -i "s/release=${arel}/release=${urel}/g" spkgbuild   
+    
+		if [ -f "${pkgdir}/${port}-${uver}-${urel}.spkg.tar.xz" ]; then 
+			pkgbuild -g
+			pkgbuild -p
+		else    
+			rmf
+			pkgbuild
+			[ -f "${pkgdir}/${port}-${uver}-${urel}.spkg.tar.xz" ] && psh
+		fi
+	fi
+}
+
+# Check branch
+if [ "$brch" != "$port" ] ; then
+	# create and change branch 
+	git checkout -B $port
+fi
+
+# Build port
+bld
