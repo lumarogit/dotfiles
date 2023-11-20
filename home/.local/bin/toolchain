@@ -1,6 +1,6 @@
 #! /bin/sh
 
-prts="linux-api-headers glibc binutils gcc glibc binutils gcc libtool libmpc elfutils libmpfr linux"
+prts="linux-api-headers glibc binutils gcc glibc binutils gcc libtool libmpc elfutils libmpfr linux-libre"
 
 toolchain() {
 	for i in $prts 

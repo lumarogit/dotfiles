@@ -11,7 +11,7 @@ case $file in
 	bsdtar -czvf "$file" "$@"
     ;;
    *.tar.xz|*.txz)
-	bsdtar -cvJf "$file" "$@"
+	tar -cvJf "$file" "$@"
     ;;
    *.tar.zst|*.zst)
 	bsdtar  -aczvf "$file" "$@"

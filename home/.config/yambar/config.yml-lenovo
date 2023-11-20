@@ -2,7 +2,7 @@
 awesome: &awesome Font Awesome 6 Free Solid:style=Solid:pixelsize=12
 awesome_brands: &awesome_brands Font Awesome 6 Brands Regular:style=Regular:pixelsize=12
 
-std_underline: &std_underline {underline: { size: 1, color: ddddddff}}
+std_overline: &std_overline {overline: { size: 1, color: ddddddff}}
 
 # This is THE bar configuration
 bar:
@@ -24,11 +24,11 @@ bar:
           - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
           - string: &default {<<: *i3_common, text: "{name}"}
           - focused: &focused
-              deco: {stack: [background: {color: 00000000}, <<: *std_underline]}
+              deco: {stack: [background: {color: 00000000}, <<: *std_overline]}
           - invisible: &invisible {foreground: ffffff55}
           - urgent: &urgent
               foreground: 000000ff
-              deco: {stack: [background: {color: ffffffff}, <<: *std_underline]}
+              deco: {stack: [background: {color: ffffffff}, <<: *std_overline]}
           - map: &i3_mode
               default:
                 - string:
@@ -57,7 +57,7 @@ bar:
 
   center:
     - clock:
-        time-format: "%a, %d %b %H:%M"
+        time-format: "%d %b %H:%M"
         content:
           - string: {text: "{time}"}
 
@@ -76,7 +76,7 @@ bar:
                     state == up && ipv4 != "": {string: {text: , font: *awesome}}
 
     - network:
-        name: wlp8s0
+        name: wlp2s0
         poll-interval: 1000
         content:
           map:

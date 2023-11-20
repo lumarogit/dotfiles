@@ -1,0 +1,2 @@
+#!/bin/sh
+brave-browser-stable --enable-features=UseOzonePlatform --ozone-platform=wayland
